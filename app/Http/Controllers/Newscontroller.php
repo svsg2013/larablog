@@ -87,7 +87,8 @@ class Newscontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $getData= $this->_news->getCreateAndEdit($request->all(),$id);
+        return $getData;
     }
 
     /**

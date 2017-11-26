@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    {!! Form::open(['route' => 'news.store','class'=>'form-horizontal','role'=>'form','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['route' => ['news.update',$getPosts->id],'class'=>'form-horizontal','method'=>'put','role'=>'form','enctype'=>'multipart/form-data']) !!}
                     <div class="col-md-8">
                         <div class="p-20">
 
@@ -33,7 +33,7 @@
                                 <div class="col-md-10">
                                     <select class="form-control" name="slMenu">
                                         <option value="">Select one</option>
-                                        {{getMenu($getDataMenu)}}
+                                        {{getMenu($getDataMenu,0,"",$getPosts->id)}}
                                     </select>
 
                                 </div>
@@ -149,7 +149,7 @@
                                                        }
 
                                                ?>
-                                               style="visibility:visible" name="tag[]" value="{{$getTag['id']}}" /> {{$getTag['title']}}</li>
+                                               style="visibility:visible" name="tags[]" value="{{$getTag['id']}}" /> {{$getTag['title']}}</li>
                                 @endforeach
                                 </ul>
                             </div>
