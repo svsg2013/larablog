@@ -114,7 +114,7 @@
                                     <h5>Multiple select</h5>
                                     <select multiple class="form-control" name="slPost[]">
                                         @foreach($getPosts as $getPost)
-                                        <option value={{$getPost->id}}>{{$getPost->title}}</option>
+                                            <option value={{$getPost->id}}>{{$getPost->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -122,9 +122,9 @@
                             <div class="col-md-12">
                                 {!! Form::label('Tags') !!}
                                 <ul>
-                                @foreach($getTags as $getTag)
-                                <li>{!! Form::checkbox('tags[]',$getTag['id'], null,['style'=>'visibility:visible']) !!} {{$getTag['title']}}</li>
-                                @endforeach
+                                    @foreach($getTags as $getTag)
+                                        <li>{!! Form::checkbox('tags[]',$getTag->id, null,['style'=>'visibility:visible']) !!} {{$getTag->title}}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div><!--row-sigbar-right-->
@@ -141,11 +141,11 @@
 @endsection
 @section('jsfiles')
     <!-- Jquery filer js -->
-    <script src="{{asset('public/backend/plugins/jquery.filer/js/jquery.filer.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/jquery.filer/js/jquery.filer.min.js')}}"></script>
     <!-- Bootstrap fileupload js -->
-    <script src="{{asset('public/backend/plugins/bootstrap-fileupload/bootstrap-fileupload.js')}}"></script>
+    <script src="{{asset('backend/plugins/bootstrap-fileupload/bootstrap-fileupload.js')}}"></script>
     <!-- page specific js -->
-    <script src="{{asset('public/backend/pages/jquery.fileuploads.init.js')}}"></script>
+    <script src="{{asset('backend/pages/jquery.fileuploads.init.js')}}"></script>
     <script>
         $( document ).ready(function(){
 //   Hide the border by commenting out the variable below

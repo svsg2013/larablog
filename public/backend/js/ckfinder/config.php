@@ -60,6 +60,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
+//khuc nay cau hinh domain nen chay localhost ko duoc phai gia lap domain
 $baseUrl = "http://".$_SERVER['SERVER_NAME']."/public/upload/";
 //$baseUrl= "http://laranews.dev/resources/upload/";
 

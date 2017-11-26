@@ -138,6 +138,58 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
                 }
             }
             return redirect()->route('news.index')->with(['thongbao'=>'Tin được tạo thành công']);
+        }else{
+            $news= $this->find($id);
+            $news->view= 1;
+            if (isset($inputFile['slPost'])){
+                $news->relation= serialize($inputFile['slPost']);
+            }
+            $news->title= $inputFile['txtName'];
+            $news->Cate_id= $inputFile['slMenu'];
+            if (!isset($inputFile['txtMetatitle'])){
+                $news->metaTitle= $inputFile['txtName'];
+            }else{
+                $news->metaTitle= $inputFile['txtMetatitle'];
+            }
+            $news->alias= changeTitle($inputFile['txtName']);
+            $news->summary= $inputFile['txtSummary'];
+            if (!isset($inputFile['txtDescription'])){
+                $news->description= $inputFile['txtSummary'];
+            }else{
+                $news->description= $inputFile['txtDescription'];
+            }
+            $news->content= $inputFile['txtContent'];
+            if (!isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])){
+                $news->hot= 0;
+                $news->feature= 0;
+            }elseif (isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])){
+                $news->hot= $inputFile['checkHot'];
+                $news->feature= 0;
+            }elseif(isset($inputFile['checkHot']) && isset($inputFile['checkFeature'])){
+                $news->hot= $inputFile['checkHot'];
+                $news->feature= $inputFile['checkFeature'];
+            }else{
+                $news->hot= 0;
+                $news->feature= $inputFile['checkFeature'];
+            }
+            if (isset($inputFile['checkActive'])){
+                $news->active= $inputFile['checkActive'];
+            }else{
+                $news->active= 0;
+            }
+            if(isset($inputFile['txtWeight'])){
+                $news->sort= $inputFile['txtWeight'];
+            }
+            if (Input::hasFile('fileImg')){
+                $file= Input::file('fileImg');
+                $name= $file->getClientOriginalName();
+                $file->move('public/upload/thumbnail',$name);
+                $news->images=$name;
+            }
+            if (Input::has('tags')){
+                $countID=DB::table('news_tags')->where('news_id',$id)->count();
+            }
+            return redirect()->route('news.index')->with(['thongbao'=>'Tin được tạo thành công']);
         }
     }
 
