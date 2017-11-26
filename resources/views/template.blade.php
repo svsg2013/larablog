@@ -13,45 +13,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- DataTables -->
-    <link href="{{asset('public/backend/plugins/datatables/buttons.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('public/backend/plugins/datatables/fixedHeader.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('public/backend/plugins/datatables/responsive.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('public/backend/plugins/datatables/scroller.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('public/backend/plugins/datatables/dataTables.colVis.css')}}" rel="stylesheet" type="text/css')}}"/>
-    <link href="{{asset('public/backend/plugins/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('public/backend/plugins/datatables/fixedColumns.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/plugins/datatables/buttons.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/plugins/datatables/fixedHeader.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/plugins/datatables/responsive.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/plugins/datatables/scroller.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/plugins/datatables/dataTables.colVis.css')}}" rel="stylesheet" type="text/css')}}"/>
+    <link href="{{asset('backend/plugins/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/plugins/datatables/fixedColumns.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
 
     <!-- Jquery filer css -->
-    <link href="{{asset('public/backend/plugins/jquery.filer/css/jquery.filer.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/backend/plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css')}}" rel="stylesheet" />
+    <link href="{{asset('backend/plugins/jquery.filer/css/jquery.filer.css')}}" rel="stylesheet" />
+    <link href="{{asset('backend/plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css')}}" rel="stylesheet" />
 
     <!-- Bootstrap fileupload css -->
-    <link href="{{asset('public/backend/plugins/bootstrap-fileupload/bootstrap-fileupload.css')}}" rel="stylesheet" />
+    <link href="{{asset('backend/plugins/bootstrap-fileupload/bootstrap-fileupload.css')}}" rel="stylesheet" />
 
-    <script src="{{asset('public/backend/js/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{asset('public/backend/js/ckfinder/ckfinder.js')}}"></script>
+    <script src="{{asset('backend/js/ckeditor/ckeditor.js')}}"></script>
+    <script src="{{asset('backend/js/ckfinder/ckfinder.js')}}"></script>
     <script type="text/javascript">
         var baseURL= "{{url('/')}}";
     </script>
-    <script src="{{asset('public/backend/js/func_ckfinder.js')}}"></script>
+    <script src="{{asset('backend/js/func_ckfinder.js')}}"></script>
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('public/backend/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('backend/images/favicon.ico')}}">
 
     <!-- C3 charts css -->
-    <link href="{{asset('public/backend/plugins/c3/c3.min.css')}}" rel="stylesheet" type="text/css"  />
+    <link href="{{asset('backend/plugins/c3/c3.min.css')}}" rel="stylesheet" type="text/css"  />
 
     <!-- App css -->
-    <link href="{{asset('public/backend/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backend/css/core.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backend/css/components.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backend/css/icons.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backend/css/pages.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backend/css/menu.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backend/css/responsive.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/css/core.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/css/components.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/css/icons.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/css/pages.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/css/menu.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend/css/responsive.css')}}" rel="stylesheet" type="text/css" />
 
-    <script src="{{asset('public/backend/js/modernizr.min.js')}}"></script>
+    <script src="{{asset('backend/js/modernizr.min.js')}}"></script>
     <!--mystyle-->
-    <link href="{{asset('public/backend/css/mystyle.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/css/mystyle.css')}}" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -70,10 +70,10 @@
             <!-- Image logo -->
             <a href="index.html" class="logo">
                                 <span>
-                                    <img src="{{asset('public/backend/images/logo.png')}}" alt="" height="25">
+                                    <img src="{{asset('backend/images/logo.png')}}" alt="" height="25">
                                 </span>
                 <i>
-                    <img src="{{asset('public/backend/images/logo_sm.png')}}" alt="" height="28">
+                    <img src="{{asset('backend/images/logo_sm.png')}}" alt="" height="28">
                 </i>
             </a>
         </div>
@@ -295,7 +295,7 @@
 
                     <li class="dropdown user-box">
                         <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
-                            <img src="{{asset('public/backend/images/users/avatar-1.jpg')}}" alt="user-img" class="img-circle user-img">
+                            <img src="{{asset('backend/images/users/avatar-1.jpg')}}" alt="user-img" class="img-circle user-img">
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
@@ -367,35 +367,35 @@
 </div>
 <!-- END wrapper -->
 <!-- jQuery  -->
-<script src="{{asset('public/backend/js/jquery.min.js')}}"></script>
-<script src="{{asset('public/backend/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('public/backend/js/metisMenu.min.js')}}"></script>
-<script src="{{asset('public/backend/js/waves.js')}}"></script>
-<script src="{{asset('public/backend/js/jquery.slimscroll.js')}}"></script>
+<script src="{{asset('backend/js/jquery.min.js')}}"></script>
+<script src="{{asset('backend/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('backend/js/metisMenu.min.js')}}"></script>
+<script src="{{asset('backend/js/waves.js')}}"></script>
+<script src="{{asset('backend/js/jquery.slimscroll.js')}}"></script>
 
 <!-- Toastr js -->
-<script src="{{asset('public/backend/plugins/jquery-toastr/jquery.toast.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('public/backend/pages/jquery.toastr.js')}}" type="text/javascript"></script>
+<script src="{{asset('backend/plugins/jquery-toastr/jquery.toast.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('backend/pages/jquery.toastr.js')}}" type="text/javascript"></script>
 
 <!-- Counter js  -->
-<script src="{{asset('public/backend/plugins/waypoints/jquery.waypoints.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/counterup/jquery.counterup.min.js')}}"></script>
+<script src="{{asset('backend/plugins/waypoints/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('backend/plugins/counterup/jquery.counterup.min.js')}}"></script>
 
 <!--C3 Chart-->
-<script type="text/javascript" src="{{asset('public/backend/plugins/d3/d3.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('public/backend/plugins/c3/c3.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('backend/plugins/d3/d3.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('backend/plugins/c3/c3.min.js')}}"></script>
 
 <!--Echart Chart-->
-<script src="{{asset('public/backend/plugins/echart/echarts-all.js')}}"></script>
+<script src="{{asset('backend/plugins/echart/echarts-all.js')}}"></script>
 
 <!-- Dashboard init -->
-<script src="{{asset('public/backend/pages/jquery.dashboard.js')}}"></script>
+<script src="{{asset('backend/pages/jquery.dashboard.js')}}"></script>
 
 <!-- App js -->
-<script src="{{asset('public/backend/js/jquery.core.js')}}"></script>
-<script src="{{asset('public/backend/js/jquery.app.js')}}"></script>
+<script src="{{asset('backend/js/jquery.core.js')}}"></script>
+<script src="{{asset('backend/js/jquery.app.js')}}"></script>
 <!--hixxx myscript-->
-<script src="{{asset('public/backend/js/myScript.js')}}"></script>
+<script src="{{asset('backend/js/myScript.js')}}"></script>
 
 @yield('jstable')
 @yield('jsfiles')
