@@ -187,26 +187,19 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
                 $news->images=$name;
             }
 
-            if (Input::has('tags')){
-                $countID=DB::table('news_tags')->where('news_id',$id)->count();
-                if ($countID == 0){
-                    $abc= Input::get('tags');
-                    foreach ($abc as $key => $getTag){
-                        $tagNew= new News_tag();
-                        $tagNew->tag_id= $getTag;
-                        $tagNew->news_id=$id;
-                        $tagNew->save();
-                    }
-                }else{
-                    DB::table('news_tags')->where('news_id',$id)->delete();
-                    $abc= Input::get('tags');
-                    foreach ($abc as $key => $getTag){
-                        $tagNew= new News_tag();
-                        $tagNew->tag_id= $getTag;
-                        $tagNew->news_id=$id;
-                        $tagNew->save();
-                    }
+
+            if (Input::has('tags')==true){
+                DB::table('news_tags')->where('news_id',$id)->delete();
+                $abc= Input::get('tags');
+                foreach ($abc as $key => $getTag){
+                    $tagNew= new News_tag();
+                    $tagNew->tag_id= $getTag;
+                    $tagNew->news_id=$id;
+                    $tagNew->save();
                 }
+            }
+            if (Input::has('tags')==false){
+                DB::table('news_tags')->where('news_id',$id)->delete();
             }
             return redirect()->route('news.index')->with(['thongbao'=>'Tin được tạo thành công']);
         }
