@@ -186,8 +186,8 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
                 $file->move('public/upload/thumbnail',$name);
                 $news->images=$name;
             }
-
-
+            $news->save();
+            //tags
             if (Input::has('tags')==true){
                 DB::table('news_tags')->where('news_id',$id)->delete();
                 $abc= Input::get('tags');
