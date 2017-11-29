@@ -99,6 +99,7 @@ class Newscontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $getData= $this->_news->getDelete($id);
+        return $getData;
     }
 }

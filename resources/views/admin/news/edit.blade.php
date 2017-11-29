@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 {!! Form::label('Image','Image',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
-                                    <img src="{{asset('public/upload/thumbnail/'.$getPosts->images)}}" class="img-rounded" alt="{{$getPosts->title}}" width="300">
+                                    <img src="{{asset('upload/thumbnail/'.$getPosts->images)}}" class="img-rounded" alt="{{$getPosts->title}}" width="300">
                                 </div>
                             </div>
 

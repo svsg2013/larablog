@@ -123,7 +123,7 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
             if (Input::hasFile('fileImg')){
                 $file= Input::file('fileImg');
                 $name= $file->getClientOriginalName();
-                $file->move('public/upload/thumbnail',$name);
+                $file->move('upload/thumbnail',$name);
                 $news->images=$name;
             }
             $news->save();
@@ -181,9 +181,10 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
                 $news->sort= $inputFile['txtWeight'];
             }
             if (Input::hasFile('fileImg')){
+                unlink('upload/thumbnail/'.$news->images);
                 $file= Input::file('fileImg');
                 $name= $file->getClientOriginalName();
-                $file->move('public/upload/thumbnail',$name);
+                $file->move('upload/thumbnail',$name);
                 $news->images=$name;
             }
             $news->save();
@@ -206,14 +207,10 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
     }
 
     public function getDelete($id)
-    {
-        $categet= ChildCate::where('lvl',$id)->count();
-        if($categet==0){
-            $getid= Category::find($id);
-            $getid->delete();
-            return redirect()->route('category.index')->with('thongbao','Xóa thành công');
-        }else{
-            return redirect()->route('category.index')->with('thongbaoloi','Đây là thư mục cha không thể xóa được');
-        }
+    {   $news= News::find($id);
+        $getDelete= News::find($id)->delete();
+        DB::table('news_tags')->where('news_id',$id)->delete();
+        unlink('upload/thumbnail/'.$news->images);
+        return redirect()->route('news.index')->with(['thongbao'=>'Tin tức đã được xóa, bất ngờ chưa!!!']);
     }
 }

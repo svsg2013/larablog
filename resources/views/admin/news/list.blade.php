@@ -49,7 +49,7 @@
                         <td>{{$get->sort}}</td>
                         <td>
                             <a href="{{route('news.edit',$get->id)}}"><button type="button" class="btn btn-icon waves-effect waves-light btn-warning">  <i class="fa fa-wrench"></i> </button></a>
-                            <a href="#"><button type="button" class="btn btn-icon waves-effect waves-light btn-danger"> <i class="fa fa-remove"></i> </button></a>
+                            <a href="{{route('news.delete',$get->id)}}"><button type="button" class="btn btn-icon waves-effect waves-light btn-danger"> <i class="fa fa-remove"></i> </button></a>
                         </td>
                     </tr>
                      @endforeach

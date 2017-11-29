@@ -24,6 +24,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('category/{idDelete}/destroy','CateController@destroy')->name('category.delete');
         //article
         Route::resource('news','NewsController',['except'=>'destroy']);
+        Route::get('news/{idDelete}/destroy','NewsController@destroy')->name('news.delete');
         //tags
         Route::resource('tags','TagsController',['except'=>'destroy']);
         Route::get('tags/{idDelete}/destroy','TagsController@destroy')->name('tags.delete');
