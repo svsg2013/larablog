@@ -35,5 +35,9 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Tags\TagsRepositoryInterface::class,
             \App\Repositories\Tags\TagsEloquentRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Users\UsersRepositoryInterface::class,
+            \App\Repositories\Users\UsersEloquentRepository::class
+        );
     }
 }

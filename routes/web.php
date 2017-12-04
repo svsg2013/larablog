@@ -28,6 +28,8 @@ Route::group(['prefix'=>'admin'],function(){
         //tags
         Route::resource('tags','TagsController',['except'=>'destroy']);
         Route::get('tags/{idDelete}/destroy','TagsController@destroy')->name('tags.delete');
+        //user
+        Route::resource('user','UserController');
     });
 });
 

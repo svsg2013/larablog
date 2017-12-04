@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\Users\UsersRepositoryInterface;
 
 class UserController extends Controller
 {
@@ -11,9 +12,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $_user;
+    public function __construct(UsersRepositoryInterface $repository)
+    {
+        $this->_user= $repository;
+    }
+
     public function index()
     {
-        return view('admin.user.list');
+        return view('admin.users.list');
     }
 
     /**
@@ -23,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -34,7 +41,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $getData= $this->_user->getCreateAndEdit($request->all());
+        return $getData;
     }
 
     /**
