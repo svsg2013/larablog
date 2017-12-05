@@ -23,6 +23,12 @@ class UsersEloquentRepository extends EloquentRepository implements UsersReposit
         // TODO: Implement getModel() method.
         return \App\User::class;
     }
+    public function getUserInfor(){
+        $getData=array();
+        $getData= User::select('name','email','phone','remember_token')->get();
+        $getData= Role::all();
+        return $getData;
+    }
     public function getCreateAndEdit($inputFile, $id=0){
         if ($id==0) {
             $user= new User();

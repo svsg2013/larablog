@@ -20,7 +20,11 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin.users.list');
+        $getData=$this->_user->getUserInfor();
+        echo "<pre>";
+        var_dump($getData);die();
+        echo "</pre>";
+        return view('admin.users.list')->with(['users'=>$getData]);
     }
 
     /**

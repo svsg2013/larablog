@@ -15,4 +15,5 @@ Interface UsersRepositoryInterface
     public function getCreateAndEdit($inputFile);
     public function getDelete($id);
     public function find($id);
+    public function getUserInfor();
 }

@@ -11,40 +11,27 @@
                 <table id="datatable-fixed-header" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Alias</th>
-                        <th>Meta Title</th>
-                        <th>Category</th>
-                        <th>Weight</th>
+                        <th>Username</th>
+                        <th>E-mail</th>
+                        <th>Roles</th>
+                        <th>Phone Number</th>
+                        <th>Token</th>
                         <th>Option</th>
                     </tr>
                     </thead>
-                    @foreach($cates as $cate)
+                    @foreach($users as $us)
                         <tr>
-                            <td>{{$cate->name}}</td>
-                            <td>{{$cate->alias}}</td>
-                            <td>{{$cate->metaName}}</td>
-                            <td >
-                                @if($cate->lvl==0)
-                                    {!!'<span style="color: red;font-weight: 600;">Thư mục cha</span>' !!}
-                                @else
-                                    <?php
-                                    $catePa= DB::table('categories')
-                                        ->leftjoin('child_cates','categories.id','=','child_cates.cateParen_id')
-                                        ->select('name')->where('categories.id','=',$cate->lvl)
-                                        ->get()->first();
-                                    echo "<span style='color: #0a6aa1;font-weight: 600;'>".$catePa->name."</span>";
-                                    ?>
-                                @endif
-                            </td>
-                            <td style="text-align: center">{{$cate->weight}}</td>
+                            <td>{{$us->name}}</td>
+                            <td>{{$us->email}}</td>
+                            <td>admin</td>
+                            <td>{{$us->phone}}</td>
+                            <td>{{$us->remember_token}}</td>
                             <td>
-                                <a href="{{route('category.edit',$cate->cateParen_id)}}"><button type="button" class="btn btn-icon waves-effect waves-light btn-warning">  <i class="fa fa-wrench"></i> </button></a>
-                                <a href="{{route('category.delete',$cate->cateParen_id)}}"><button type="button" class="btn btn-icon waves-effect waves-light btn-danger"> <i class="fa fa-remove"></i> </button></a>
-
+                                <a href=""><button type="button" class="btn btn-icon waves-effect waves-light btn-warning">  <i class="fa fa-wrench"></i> </button></a>
+                                <a href=""><button type="button" class="btn btn-icon waves-effect waves-light btn-danger"> <i class="fa fa-remove"></i> </button></a>
                             </td>
                         </tr>
-                        @endforeach
+                    @endforeach
                         </tbody>
                 </table>
             </div>
