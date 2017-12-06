@@ -15,7 +15,7 @@
 //    return view('welcome');
 //});
 Route::get('/',function(){
-    return view('admin.user.list');
+    return view('admin.users.list');
 });
 Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'panel'],function(){

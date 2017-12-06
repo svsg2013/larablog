@@ -45,12 +45,12 @@
                                     {!! Form::text('txtPass',old('txtPass'),['placeholder'=>'To type here','class'=>'form-control']) !!}
                                 </div>
                             </div>
-                            <div class="for-group">
+                            <div class="form-group">
+                                {!! Form::label('Check Roles','Check Roles',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::label('Check Roles') !!}
                                     <ul>
-                                        @foreach($getTags as $getTag)
-                                            <li>{!! Form::checkbox('tags[]',$getTag->id, null,['style'=>'visibility:visible']) !!} {{$getTag->title}}</li>
+                                        @foreach($users['123'] as $us)
+                                            <li>{!! Form::checkbox('roles[]',$us->id, null,['style'=>'visibility:visible']) !!} {{$us->portray}}</li>
                                         @endforeach
                                     </ul>
                                 </div>

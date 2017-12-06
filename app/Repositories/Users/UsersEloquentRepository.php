@@ -25,8 +25,9 @@ class UsersEloquentRepository extends EloquentRepository implements UsersReposit
     }
     public function getUserInfor(){
         $getData=array();
-        $getData= User::select('name','email','phone','remember_token')->get();
-        $getData= Role::all();
+        $getUser= User::select('name','email','phone','remember_token')->get();
+        $getRole= Role::all();
+        $getData=['abc'=>$getUser,'123'=>$getRole];
         return $getData;
     }
     public function getCreateAndEdit($inputFile, $id=0){
@@ -36,13 +37,20 @@ class UsersEloquentRepository extends EloquentRepository implements UsersReposit
             $user->remember_token= $inputFile['_token'];
             $user->email= $inputFile['txtEmail'];
             $user->phone= $inputFile['txtPhone'];
+            if(Input::has('slRoles')){
+                $user->lvl= $inputFile['slRoles'];
+            }
             $user->password= $inputFile['txtPass'];
             $user->save();
-            if(Input::has('slRoles')){
-                $getRole= new User_role();
-                $getRole->role_id= $inputFile['slRoles'];
-                $getRole->user_id= $user->id;
-                $getRole->save();
+            $idUser= $user->id;
+            if(Input::has('roles')){
+                $getRoles= $inputFile['roles'];
+                foreach ($getRoles as $role){
+                    $getRole= new User_role();
+                    $getRole->role_id= $role;
+                    $getRole->user_id= $idUser;
+                    $getRole->save();
+                }
             }
             return redirect()->route('user.index')->with('thongbao','User khởi tạo thành công');
         }

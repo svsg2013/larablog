@@ -21,9 +21,6 @@ class UserController extends Controller
     public function index()
     {
         $getData=$this->_user->getUserInfor();
-        echo "<pre>";
-        var_dump($getData);die();
-        echo "</pre>";
         return view('admin.users.list')->with(['users'=>$getData]);
     }
 
@@ -34,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $getData=$this->_user->getUserInfor();
+        return view('admin.users.create')->with(['users'=>$getData]);
     }
 
     /**

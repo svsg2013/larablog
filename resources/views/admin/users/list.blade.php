@@ -19,7 +19,7 @@
                         <th>Option</th>
                     </tr>
                     </thead>
-                    @foreach($users as $us)
+                    @foreach($users['abc'] as $us)
                         <tr>
                             <td>{{$us->name}}</td>
                             <td>{{$us->email}}</td>
