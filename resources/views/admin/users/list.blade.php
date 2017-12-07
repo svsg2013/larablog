@@ -27,7 +27,7 @@
                             <td>{{$us->phone}}</td>
                             <td>{{$us->remember_token}}</td>
                             <td>
-                                <a href=""><button type="button" class="btn btn-icon waves-effect waves-light btn-warning">  <i class="fa fa-wrench"></i> </button></a>
+                                <a href="{{route('user.edit',$us->id)}}"><button type="button" class="btn btn-icon waves-effect waves-light btn-warning">  <i class="fa fa-wrench"></i> </button></a>
                                 <a href=""><button type="button" class="btn btn-icon waves-effect waves-light btn-danger"> <i class="fa fa-remove"></i> </button></a>
                             </td>
                         </tr>

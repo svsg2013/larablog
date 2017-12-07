@@ -14,33 +14,45 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="p-20">
-                            {!! Form::open(['route' => ['category.update',$catePaId->cateParen_id],'method'=>'put','class'=>'form-horizontal','role'=>'form','enctype'=>'multipart/form-data']) !!}
+                            {!! Form::open(['route' =>['user.update',$getUsers->id],'class'=>'form-horizontal','role'=>'form','method'=>'put','enctype'=>'multipart/form-data']) !!}
                             <div class="form-group">
-                                {!! Form::label('title','Title',['class'=>'col-md-2 control-label']) !!}
+                                {!! Form::label('Username','Username',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::text('txtName',old('txtName',isset($catePaId)?$catePaId->name:null),['placeholder'=>'To type here','class'=>'form-control']) !!}
+                                    {!! Form::text('txtUser',old('txtUser',isset($getUsers)?$getUsers->name:null),['placeholder'=>'To type here','class'=>'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
-
                                 {!! Form::label('input select','Input Select',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
-                                    <select class="form-control" name="slMenu">
-                                        <option value="0">Select one</option>
-                                        {{getMenu($datas,0,$char='|--',$catePaId->lvl)}}
-                                    </select>
+                                    {!! Form::select('slRoles', ['1' => 'Administrator', '2' => 'Moderator','3'=>'Editor'], null, ['placeholder' => 'Chọn chức vụ...','class'=>'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('Meta Title','Meta Title',['class'=>'col-md-2 control-label']) !!}
+                                {!! Form::label('E-mail','E-mail',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::text('txtMeta',old('txtName',isset($catePaId)?$catePaId->metaName:null),['placeholder'=>'To type here if any','class'=>'form-control']) !!}
+                                    {!! Form::text('txtEmail',old('txtEmail',isset($getUsers)?$getUsers->email:null),['placeholder'=>'To type here if any','class'=>'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('Meta Description','Meta Description',['class'=>'col-md-2 control-label']) !!}
+                                {!! Form::label('Phone Number','Phone Number',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::textarea('txtDescription',old('txtName',isset($catePaId)?$catePaId->description:null),['placeholder'=>'To type here if any','class'=>'form-control','rows'=>5]) !!}
+                                    {!! Form::text('txtPhone',old('txtPhone',isset($getUsers)?$getUsers->phone:null),['placeholder'=>'To type here if any','class'=>'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('Password','Password',['class'=>'col-md-2 control-label']) !!}
+                                <div class="col-md-10">
+                                    {!! Form::text('txtPass',old('txtPass',isset($getUsers)?$getUsers->password:null),['placeholder'=>'To type here','class'=>'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('Check Roles','Check Roles',['class'=>'col-md-2 control-label']) !!}
+                                <div class="col-md-10">
+                                    <ul>
+                                        {{--@foreach($users['123'] as $us)--}}
+                                            {{--<li>{!! Form::checkbox('roles[]',$us->id, null,['style'=>'visibility:visible']) !!} {{$us->portray}}</li>--}}
+                                        {{--@endforeach--}}
+                                    </ul>
                                 </div>
                             </div>
                             <div class="form-group">

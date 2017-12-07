@@ -66,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getData= $this->_user->getUserInfor($id);
+        return view('admin.users.edit')->with(['getUsers'=>$getData['abc']]);
     }
 
     /**
