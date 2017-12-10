@@ -31,12 +31,18 @@ class UsersEloquentRepository extends EloquentRepository implements UsersReposit
             $getData=['abc'=>$getUser,'123'=>$getRole];
             return $getData;
         }else{
+            $RoleCheked= array();
             $getUser= User::find($id);
-            $getRole= Role::all();
-//            echo "<pre>";
-//            var_dump($getUser);die();
-//            echo "</pre>";
-            $getData=['abc'=>$getUser,'123'=>$getRole];
+            $getRole= Role::all()->toArray();
+            $getRoleChecked= User_role::select('role_id')->where('user_id',$id)->get();
+            foreach ($getRole as $role){
+                $RoleCheked[]= array(
+                    'id'=> $role['id'],
+                    'name'=> $role['portray'],
+                    'chek'=> $getRoleChecked
+                );
+            }
+            $getData=['abc'=>$getUser,'123'=>$getRole,'RolChecked'=>$RoleCheked];
             return $getData;
         }
     }

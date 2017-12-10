@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 {!! Form::label('input select','Input Select',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::select('slRoles', ['1' => 'Administrator', '2' => 'Moderator','3'=>'Editor'], null, ['placeholder' => 'Chọn chức vụ...','class'=>'form-control']) !!}
+                                    {!! Form::select('slRoles', ['1' => 'Administrator', '2' => 'Moderator','3'=>'Editor'], $getUsers->lvl, ['placeholder' => 'Chọn chức vụ...','class'=>'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -49,9 +49,21 @@
                                 {!! Form::label('Check Roles','Check Roles',['class'=>'col-md-2 control-label']) !!}
                                 <div class="col-md-10">
                                     <ul>
-                                        {{--@foreach($users['123'] as $us)--}}
-                                            {{--<li>{!! Form::checkbox('roles[]',$us->id, null,['style'=>'visibility:visible']) !!} {{$us->portray}}</li>--}}
-                                        {{--@endforeach--}}
+                                        @foreach($RolCheck as $getData)
+                                                {{--<li>{!! Form::checkbox('roles[]',$getData['id'],($getData['id'] == $chk->role_id)?'true':null,['style'=>'visibility:visible']) !!} {{$getData['name']}}</li>--}}
+                                                <li><input type="checkbox" value="{{$getData['id']}}"
+                                                           <?php
+                                                                if (!empty($getData['chek'])){
+                                                                    foreach ($getData['chek'] as $chk){
+                                                                        if ($chk->role_id == $getData['id']){
+                                                                            echo 'checked';
+                                                                        }
+                                                                    }
+                                                                }
+                                                               ?>
+                                                   style="visibility:visible" /> {{$getData['name']}}</li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                             </div>
