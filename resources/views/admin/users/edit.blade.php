@@ -50,18 +50,17 @@
                                 <div class="col-md-10">
                                     <ul>
                                         @foreach($RolCheck as $getData)
-                                                {{--<li>{!! Form::checkbox('roles[]',$getData['id'],($getData['id'] == $chk->role_id)?'true':null,['style'=>'visibility:visible']) !!} {{$getData['name']}}</li>--}}
-                                                <li><input type="checkbox" value="{{$getData['id']}}"
-                                                           <?php
-                                                                if (!empty($getData['chek'])){
+                                                @php
+                                                    $save='';
+                                                    if (!empty($getData['chek'])){
                                                                     foreach ($getData['chek'] as $chk){
                                                                         if ($chk->role_id == $getData['id']){
-                                                                            echo 'checked';
+                                                                            $save='checked';
                                                                         }
                                                                     }
                                                                 }
-                                                               ?>
-                                                   style="visibility:visible" /> {{$getData['name']}}</li>
+                                                @endphp
+                                            <li>{!! Form::checkbox('roles[]',$getData['id'],$save,['style'=>'visibility:visible']) !!} {{$getData['name']}}</li>
                                         @endforeach
 
                                     </ul>
