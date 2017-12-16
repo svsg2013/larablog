@@ -79,7 +79,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $getData= $this->_user->getCreateAndEdit($request->all(),$id);
+        return $getData;
     }
 
     /**

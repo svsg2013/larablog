@@ -69,6 +69,28 @@ class UsersEloquentRepository extends EloquentRepository implements UsersReposit
                 }
             }
             return redirect()->route('user.index')->with('thongbao','User khởi tạo thành công');
+        }else{
+            $user= User::find($id);
+            $user->name= $inputFile['txtUser'];
+            $user->remember_token= $inputFile['_token'];
+            $user->email= $inputFile['txtEmail'];
+            $user->phone= $inputFile['txtPhone'];
+            if(Input::has('slRoles')){
+                $user->lvl= $inputFile['slRoles'];
+            }
+            $user->password= $inputFile['txtPass'];
+            $user->save();
+            if(Input::has('roles')){
+                DB::table('user_roles')->where('user_id',$id)->delete();
+                $getRoles= $inputFile['roles'];
+                foreach ($getRoles as $role){
+                    $getRole= new User_role();
+                    $getRole->role_id= $role;
+                    $getRole->user_id= $id;
+                    $getRole->save();
+                }
+            }
+            return redirect()->route('user.index')->with('thongbao','User khởi tạo thành công');
         }
     }
 

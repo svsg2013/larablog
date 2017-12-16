@@ -199,9 +199,6 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
                     $tagNew->save();
                 }
             }
-            if (Input::has('tags')==false){
-                DB::table('news_tags')->where('news_id',$id)->delete();
-            }
             return redirect()->route('news.index')->with(['thongbao'=>'Tin được tạo thành công']);
         }
     }
