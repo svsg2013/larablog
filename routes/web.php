@@ -10,14 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-Route::get('/',function(){
-    return view('admin.users.list');
+//front end
+Route::get('/',function (){
+    return view('trendy.home');
 });
-Route::group(['prefix'=>'admin'],function(){
+//
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::group(['prefix'=>'panel'],function(){
         //category
         Route::resource('category','CateController',['except'=>'destroy']);
@@ -33,3 +31,6 @@ Route::group(['prefix'=>'admin'],function(){
     });
 });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

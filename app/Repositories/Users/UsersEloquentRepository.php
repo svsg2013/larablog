@@ -11,6 +11,7 @@ use App\Repositories\EloquentRepository;
 use App\User;
 use App\User_role;
 use App\Role;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 
@@ -56,7 +57,7 @@ class UsersEloquentRepository extends EloquentRepository implements UsersReposit
             if(Input::has('slRoles')){
                 $user->lvl= $inputFile['slRoles'];
             }
-            $user->password= $inputFile['txtPass'];
+            $user->password= bcrypt($inputFile['txtPass']);
             $user->save();
             $idUser= $user->id;
             if(Input::has('roles')){
@@ -78,7 +79,7 @@ class UsersEloquentRepository extends EloquentRepository implements UsersReposit
             if(Input::has('slRoles')){
                 $user->lvl= $inputFile['slRoles'];
             }
-            $user->password= $inputFile['txtPass'];
+            $user->password= bcrypt($inputFile['txtPass']);
             $user->save();
             if(Input::has('roles')){
                 DB::table('user_roles')->where('user_id',$id)->delete();
