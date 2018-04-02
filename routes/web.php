@@ -12,7 +12,7 @@
 */
 //front end
 Route::get('/',function (){
-    return view('trendy.home');
+    return view('workshop.index');
 });
 //
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
