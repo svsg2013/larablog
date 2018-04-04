@@ -10,11 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//front end
-Route::get('/',function (){
-    return view('workshop.index');
-});
-//
+//frontend
+Route::get('/','HomeController@index')->name('trangchu');
+//backend
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::group(['prefix'=>'panel'],function(){
         //category
@@ -33,4 +31,4 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

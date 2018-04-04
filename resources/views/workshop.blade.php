@@ -54,7 +54,7 @@
 
             <!-- Side Menu Button -->
             <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
-              <span class="nav-icon-toggle__box">
+              <span class="nav-icon-toggle__box hidden-lg hidden-md hidden-xs hidden-sm">
                 <span class="nav-icon-toggle__inner"></span>
               </span>
             </button> <!-- end Side menu button -->
