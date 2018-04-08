@@ -2,7 +2,7 @@
     <ul class="nav__menu">
 
         <li class="active">
-            <a href="{{route('trangchu')}}">Trang chủ</a>
+            <a href="{{url('/')}}">Trang chủ</a>
         </li>
             {!! $cates !!}
         <!--bike store-->
