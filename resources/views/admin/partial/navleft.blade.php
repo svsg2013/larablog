@@ -28,19 +28,22 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" aria-expanded="true"><i class="fi-tag"></i> <span> Tags </span> <span class="menu-arrow"></span></a>
+                    <a href="javascript: void(0);" aria-expanded="true"><i class="fi-tag"></i> <span> Tags News</span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level nav" aria-expanded="true">
                         <li><a href="{{route('tags.create')}}">Create Tag</a></li>
                         <li><a href="{{route('tags.index')}}">List Tags</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" aria-expanded="true"><i class="fi-mail"></i> <span> E-mail </span> <span class="menu-arrow"></span></a>
+                    <a href="javascript: void(0);" aria-expanded="true"><i class="fi-mail"></i> <span> Products </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level nav" aria-expanded="true">
-                        <li><a href="admin-grid.html">Create News</a></li>
-                        <li><a href="admin-sweet-alert.html">List News</a></li>
+                        <li><a href="{{route('cateprod.create')}}">Create Categories</a></li>
+                        <li><a href="{{route('cateprod.index')}}">List Categories</a></li>
+                        <li><a href="admin-sweet-alert.html">Create Product</a></li>
+                        <li><a href="admin-sweet-alert.html">List Product</a></li>
                     </ul>
                 </li>
+
                 <li>
                     <a href="javascript: void(0);" aria-expanded="true"><i class="fi-head"></i> <span> Users </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level nav" aria-expanded="true">

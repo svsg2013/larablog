@@ -12,44 +12,57 @@ namespace App\Repositories;
 abstract class EloquentRepository implements RepositoryInterface
 {
     protected $_model;
+
 //cau hinh model
-    public function __construct(){
+    public function __construct()
+    {
         $this->setModel();
     }
 
     abstract public function getModel();
 
-    public function setModel(){
-        $this->_model= app()->make($this->getModel());
+    public function setModel()
+    {
+        $this->_model = app()->make($this->getModel());
     }
+
 // phan thuc thi
-    public function getAll(){
+    public function getAll()
+    {
         return $this->_model->all();
     }
-    public function create(array $attributes){
+
+    public function create(array $attributes)
+    {
         return $this->_model->create($attributes);
     }
-    public function find($id){
-        $result= $this->_model->find($id);
-        if($result){
+
+    public function find($id)
+    {
+        $result = $this->_model->find($id);
+        if ($result) {
             return $result;
-        }else{
+        } else {
             return false;
         }
     }
-    public function delete($id){
-        $result= $this->_model->find($id);
-        if($result){
+
+    public function delete($id)
+    {
+        $result = $this->_model->find($id);
+        if ($result) {
             return $result->delete($id);
-        }else{
+        } else {
             return false;
         }
     }
-    public function update($id, array $attributes){
-        $result= $this->_model->find($id);
-        if($result){
+
+    public function update($id, array $attributes)
+    {
+        $result = $this->_model->find($id);
+        if ($result) {
             return $result->update($attributes);
-        }else{
+        } else {
             return false;
         }
     }

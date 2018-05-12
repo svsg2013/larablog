@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('Cate_id')->unsigned();
             $table->string('title')->unique();
@@ -24,14 +24,16 @@ class CreateNewsTable extends Migration
             $table->longText('content');
             $table->boolean('feature')->default(0)->nullable();
             $table->string('images');
+            $table->integer('prices');
+            $table->integer('discount');
+            $table->boolean('new')->default(0);
             $table->boolean('hot')->default(0)->nullable();
             $table->integer('sort')->default(1)->unsigned();
             $table->integer('view')->unsigned();
-            $table->boolean('active');
-            $table->string('relation')->nullable();
+            $table->boolean('active')->default(1);
             $table->foreign('Cate_id')
                 ->references('id')
-                ->on('categories')
+                ->on('cate_prods')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -44,6 +46,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('products');
     }
 }
