@@ -39,8 +39,8 @@
                     <ul class="nav-second-level nav" aria-expanded="true">
                         <li><a href="{{route('cateprod.create')}}">Create Categories</a></li>
                         <li><a href="{{route('cateprod.index')}}">List Categories</a></li>
-                        <li><a href="admin-sweet-alert.html">Create Product</a></li>
-                        <li><a href="admin-sweet-alert.html">List Product</a></li>
+                        <li><a href="{{route('prods.create')}}">Create Product</a></li>
+                        <li><a href="{{route('prods.index')}}">List Product</a></li>
                     </ul>
                 </li>
 

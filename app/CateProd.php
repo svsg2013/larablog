@@ -12,4 +12,8 @@ class CateProd extends Model
         return $this->hasMany('App\ChildProd','cateParen_id','id');
     }
 
+    public function news(){
+        return $this->hasMany('App\Products','Cate_id','id');
+    }
+
 }

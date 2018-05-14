@@ -43,5 +43,9 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\CateProd\CateProdRepositoryInterface::class,
             \App\Repositories\CateProd\CateProdEloquentRepository::class
         );
+        $this->app->singleton(
+          \App\Repositories\Prods\ProdsRepositoryInterface::class,
+          \App\Repositories\Prods\ProdsEloquentRepository::class
+        );
     }
 }
