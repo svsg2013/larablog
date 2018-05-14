@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('cateprod/{idDelete}/destroy', 'CateProdController@destroy')->name('cateprod.delete');
         //Prods
         Route::resource('prods', 'ProdsController', ['except' => 'destroy']);
-//        Route::get('prods/{idDelete}/destroy', 'ProdsController', ['except' => 'destroy'])->name('prods.delete');
+        Route::get('prods/{idDelete}/destroy', 'ProdsController@destroy')->name('prods.delete');
         //article
         Route::resource('news', 'NewsController', ['except' => 'destroy']);
         Route::get('news/{idDelete}/destroy', 'NewsController@destroy')->name('news.delete');
