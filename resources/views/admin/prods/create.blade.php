@@ -81,7 +81,7 @@
                             {!! Form::label('Hot News') !!}
                             <!-- Slide THREE -->
                                 <div class="slideThree">
-                                    <input type="checkbox" value="1" id="slideThree" name="checkHot" />
+                                    <input type="checkbox" value="1" id="slideThree" name="checkHot"/>
                                     <label for="slideThree"></label>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             {!! Form::label('Feature News') !!}
                             <!-- Slide THREE -->
                                 <div class="slideThree1">
-                                    <input type="checkbox" value="1" id="slideThree1" name="checkFeature" />
+                                    <input type="checkbox" value="1" id="slideThree1" name="checkFeature"/>
                                     <label for="slideThree1"></label>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             {!! Form::label('Active') !!}
                             <!-- Slide THREE -->
                                 <div class="slideThree2">
-                                    <input type="checkbox"  checked value="1" id="slideThree2" name="checkActive" />
+                                    <input type="checkbox" checked value="1" id="slideThree2" name="checkActive"/>
                                     <label for="slideThree2"></label>
                                 </div>
                             </div>
@@ -109,7 +109,14 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            
+                            <div class="col-md-12">
+                                <div class="boxImgs">
+                                    <label for="product_more_image_path">Thêm hình ảnh sản phẩm</label>
+                                    <div id="imageBlock"></div>
+                                    <button type="button" class="btn btn-custom waves-effect waves-light btn-md" id="addMoreImage">Thêm hình
+                                    </button>
+                                </div>
+                            </div>
                         </div><!--row-sigbar-right-->
                     </div>
                     {!! Form::close() !!}
@@ -130,13 +137,13 @@
     <!-- page specific js -->
     <script src="{{asset('backend/pages/jquery.fileuploads.init.js')}}"></script>
     <script>
-        $( document ).ready(function(){
+        $(document).ready(function () {
 //   Hide the border by commenting out the variable below
             var $on = 'section';
             $($on).css({
-                'background':'none',
-                'border':'none',
-                'box-shadow':'none'
+                'background': 'none',
+                'border': 'none',
+                'box-shadow': 'none'
             });
         });
     </script>

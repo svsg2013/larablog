@@ -257,3 +257,18 @@ input[type=checkbox] {
 .slideThree2 input[type=checkbox]:checked + label {
   left: 43px;
 }
+/* custom add more images */
+.boxImgs{
+  display: block;
+  border: 1px solid #f4f4f4;
+  margin-top: 10px;
+  padding: 5px;
+}
+.boxImgs button.but{
+  background-color: #64c5b1;
+  color: #fff;
+}
+
+.boxImgs button.but:hover{
+  background-color: red;
+}
