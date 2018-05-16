@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    {!! Form::open(['route' => 'news.store','class'=>'form-horizontal','role'=>'form','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'prods.store','class'=>'form-horizontal','role'=>'form','enctype'=>'multipart/form-data']) !!}
                     <div class="col-md-8">
                         <div class="p-20">
 
@@ -108,7 +108,20 @@
                                     {!! Form::text('txtWeight','1') !!}
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="cusWeight">
+                                    {!! Form::label('Prices') !!}
+                                    {!! Form::text('txtPrices','0') !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="cusWeight">
+                                    {!! Form::label('Discount') !!}
+                                    {!! Form::text('txtDiscount','0') !!}
+                                </div>
+                            </div>
                             <div class="clearfix"></div>
+                            <!-- create more images -->
                             <div class="col-md-12">
                                 <div class="boxImgs">
                                     <label for="product_more_image_path">Thêm hình ảnh sản phẩm</label>

@@ -46,7 +46,8 @@ class ProdsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $getProds= $this->_prods->getCreateAndEdit($request->all());
+        return $getProds;
     }
 
     /**
