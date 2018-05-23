@@ -7,6 +7,7 @@
  */
 
 namespace App\Repositories\News;
+
 use App\Repositories\EloquentRepository;
 use App\Category;
 use App\ChildCate;
@@ -26,188 +27,194 @@ class NewsEloquentRepository extends EloquentRepository implements NewsRepositor
         return \App\News::class;
     }
 
-    public function unseri($id){
-        $getPostandUn=array();
+    public function unseri($id)
+    {
+        $getPostandUn = array();
         //truy vấn relation lấy giá trị để biên dịch lại mảng bị mã hóa
-        $getId= DB::table('news')->select('relation')->where('id',$id)->get();
+        $getId = DB::table('news')->select('relation')->where('id', $id)->get();
         //truy vấn lấy dữ liệu news
-        $getPost=DB::table('news')->select('id','title')->get();
+        $getPost = DB::table('news')->select('id', 'title')->get();
         //chọn giá trị mảng tới phần tử object
-        $unseri= unserialize($getId[0]->relation);
+        $unseri = unserialize($getId[0]->relation);
         //gôm chung giá trị vào một mảng để xử lý foreach lấy giá trị relation
-        foreach ($getPost as $getData){
-            $getPostandUn[]=array(
-                'id'=>$getData->id,
-                'title'=>$getData->title,
-                'relation'=>$unseri
+        foreach ($getPost as $getData) {
+            $getPostandUn[] = array(
+                'id' => $getData->id,
+                'title' => $getData->title,
+                'relation' => $unseri
             );
         }
         return $getPostandUn;
     }
 
-    public function getAll(){
-        $getData= DB::table('news')->select('id','title','hot','feature','active','sort','relation')->get();
+    public function getAll()
+    {
+        $getData = DB::table('news')->select('id', 'title', 'hot', 'feature', 'active', 'sort', 'relation')->get();
         return $getData;
     }
 
-    public function getTags($id=0){
-        if ($id==0){
-            $allTags=DB::table('tags')->select('id','title')->get()->toArray();
+    public function getTags($id = 0)
+    {
+        if ($id == 0) {
+            $allTags = DB::table('tags')->select('id', 'title')->get()->toArray();
             return $allTags;
-        }else{
-            $getTagandChek=array();
-            $getIdofTag=DB::table('news_tags')->select('tag_id')->where('news_id',$id)->get()->toArray();
-            $allTags=DB::table('tags')->select('id','title')->get();
-            foreach ($allTags as $tag){
-                $getTagandChek[]=array(
-                    'id'=>$tag->id,
-                    'title'=>$tag->title,
-                    'check'=>$getIdofTag
+        } else {
+            $getTagandChek = array();
+            $getIdofTag = DB::table('news_tags')->select('tag_id')->where('news_id', $id)->get()->toArray();
+            $allTags = DB::table('tags')->select('id', 'title')->get();
+            foreach ($allTags as $tag) {
+                $getTagandChek[] = array(
+                    'id' => $tag->id,
+                    'title' => $tag->title,
+                    'check' => $getIdofTag
                 );
             }
             return $getTagandChek;
         }
     }
 
-    public function getDataMenu(){
-        $cate= DB::table('categories')
-            ->leftjoin('child_cates','categories.id','=','child_cates.cateParen_id')
-            ->select('name','lvl','alias','metaName','description','weight','child_cates.cateParen_id')
+    public function getDataMenu()
+    {
+        $cate = DB::table('categories')
+            ->leftjoin('child_cates', 'categories.id', '=', 'child_cates.cateParen_id')
+            ->select('name', 'lvl', 'alias', 'metaName', 'description', 'weight', 'child_cates.cateParen_id')
             ->get();
         return $cate;
     }
 
-    public function getCreateAndEdit($inputFile, $id=0){
-        if($id==0){
-            $news= new News();
-            $news->view= 1;
-            if (isset($inputFile['slPost'])){
-                $news->relation= serialize($inputFile['slPost']);
+    public function getCreateAndEdit($inputFile, $id = 0)
+    {
+        if ($id == 0) {
+            $news = new News();
+            $news->view = 1;
+            if (isset($inputFile['slPost'])) {
+                $news->relation = serialize($inputFile['slPost']);
             }
-            $news->title= $inputFile['txtName'];
-            $news->Cate_id= $inputFile['slMenu'];
-            if (!isset($inputFile['txtMetatitle'])){
-                $news->metaTitle= $inputFile['txtName'];
-            }else{
-                $news->metaTitle= $inputFile['txtMetatitle'];
+            $news->title = $inputFile['txtName'];
+            $news->Cate_id = $inputFile['slMenu'];
+            if (!isset($inputFile['txtMetatitle'])) {
+                $news->metaTitle = $inputFile['txtName'];
+            } else {
+                $news->metaTitle = $inputFile['txtMetatitle'];
             }
-            $news->alias= changeTitle($inputFile['txtName']);
-            $news->summary= $inputFile['txtSummary'];
-            if (!isset($inputFile['txtDescription'])){
-                $news->description= $inputFile['txtSummary'];
-            }else{
-                $news->description= $inputFile['txtDescription'];
+            $news->alias = changeTitle($inputFile['txtName']);
+            $news->summary = $inputFile['txtSummary'];
+            if (!isset($inputFile['txtDescription'])) {
+                $news->description = $inputFile['txtSummary'];
+            } else {
+                $news->description = $inputFile['txtDescription'];
             }
-            $news->content= $inputFile['txtContent'];
-            if (!isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])){
-                $news->hot= 0;
-                $news->feature= 0;
-            }elseif (isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])){
-                $news->hot= $inputFile['checkHot'];
-                $news->feature= 0;
-            }elseif(isset($inputFile['checkHot']) && isset($inputFile['checkFeature'])){
-                $news->hot= $inputFile['checkHot'];
-                $news->feature= $inputFile['checkFeature'];
-            }else{
-                $news->hot= 0;
-                $news->feature= $inputFile['checkFeature'];
+            $news->content = $inputFile['txtContent'];
+            if (!isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])) {
+                $news->hot = 0;
+                $news->feature = 0;
+            } elseif (isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])) {
+                $news->hot = $inputFile['checkHot'];
+                $news->feature = 0;
+            } elseif (isset($inputFile['checkHot']) && isset($inputFile['checkFeature'])) {
+                $news->hot = $inputFile['checkHot'];
+                $news->feature = $inputFile['checkFeature'];
+            } else {
+                $news->hot = 0;
+                $news->feature = $inputFile['checkFeature'];
             }
-            if (isset($inputFile['checkActive'])){
-                $news->active= $inputFile['checkActive'];
-            }else{
-                $news->active= 0;
+            if (isset($inputFile['checkActive'])) {
+                $news->active = $inputFile['checkActive'];
+            } else {
+                $news->active = 0;
             }
-            if(isset($inputFile['txtWeight'])){
-                $news->sort= $inputFile['txtWeight'];
+            if (isset($inputFile['txtWeight'])) {
+                $news->sort = $inputFile['txtWeight'];
             }
-            if (Input::hasFile('fileImg')){
-                $file= Input::file('fileImg');
-                $name= $file->getClientOriginalName();
-                $file->move('upload/thumbnail',$name);
-                $news->images=$name;
+            if (Input::hasFile('fileImg')) {
+                $file = Input::file('fileImg');
+                $name = $file->getClientOriginalName();
+                $file->move('upload/thumbnail', $name);
+                $news->images = $name;
             }
             $news->save();
-            $idNews= $news->id;
-            if (isset($inputFile['tags'])){
-                $abc= Input::get('tags');
-                foreach ($abc as $key => $getTag){
-                    $tagNew= new News_tag();
-                    $tagNew->tag_id= $getTag;
-                    $tagNew->news_id=$idNews;
+            $idNews = $news->id;
+            if (isset($inputFile['tags'])) {
+                $abc = Input::get('tags');
+                foreach ($abc as $key => $getTag) {
+                    $tagNew = new News_tag();
+                    $tagNew->tag_id = $getTag;
+                    $tagNew->news_id = $idNews;
                     $tagNew->save();
                 }
             }
-            return redirect()->route('news.index')->with(['thongbao'=>'Tin được tạo thành công']);
-        }else{
-            $news= $this->find($id);
-            $news->view= 1;
-            if (isset($inputFile['slPost'])){
-                $news->relation= serialize($inputFile['slPost']);
+            return redirect()->route('news.index')->with(['thongbao' => 'Tin được tạo thành công']);
+        } else {
+            $news = $this->find($id);
+            $news->view = 1;
+            if (isset($inputFile['slPost'])) {
+                $news->relation = serialize($inputFile['slPost']);
             }
-            $news->title= $inputFile['txtName'];
-            $news->Cate_id= $inputFile['slMenu'];
-            if (!isset($inputFile['txtMetatitle'])){
-                $news->metaTitle= $inputFile['txtName'];
-            }else{
-                $news->metaTitle= $inputFile['txtMetatitle'];
+            $news->title = $inputFile['txtName'];
+            $news->Cate_id = $inputFile['slMenu'];
+            if (!isset($inputFile['txtMetatitle'])) {
+                $news->metaTitle = $inputFile['txtName'];
+            } else {
+                $news->metaTitle = $inputFile['txtMetatitle'];
             }
-            $news->alias= changeTitle($inputFile['txtName']);
-            $news->summary= $inputFile['txtSummary'];
-            if (!isset($inputFile['txtDescription'])){
-                $news->description= $inputFile['txtSummary'];
-            }else{
-                $news->description= $inputFile['txtDescription'];
+            $news->alias = changeTitle($inputFile['txtName']);
+            $news->summary = $inputFile['txtSummary'];
+            if (!isset($inputFile['txtDescription'])) {
+                $news->description = $inputFile['txtSummary'];
+            } else {
+                $news->description = $inputFile['txtDescription'];
             }
-            $news->content= $inputFile['txtContent'];
-            if (!isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])){
-                $news->hot= 0;
-                $news->feature= 0;
-            }elseif (isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])){
-                $news->hot= $inputFile['checkHot'];
-                $news->feature= 0;
-            }elseif(isset($inputFile['checkHot']) && isset($inputFile['checkFeature'])){
-                $news->hot= $inputFile['checkHot'];
-                $news->feature= $inputFile['checkFeature'];
-            }else{
-                $news->hot= 0;
-                $news->feature= $inputFile['checkFeature'];
+            $news->content = $inputFile['txtContent'];
+            if (!isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])) {
+                $news->hot = 0;
+                $news->feature = 0;
+            } elseif (isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])) {
+                $news->hot = $inputFile['checkHot'];
+                $news->feature = 0;
+            } elseif (isset($inputFile['checkHot']) && isset($inputFile['checkFeature'])) {
+                $news->hot = $inputFile['checkHot'];
+                $news->feature = $inputFile['checkFeature'];
+            } else {
+                $news->hot = 0;
+                $news->feature = $inputFile['checkFeature'];
             }
-            if (isset($inputFile['checkActive'])){
-                $news->active= $inputFile['checkActive'];
-            }else{
-                $news->active= 0;
+            if (isset($inputFile['checkActive'])) {
+                $news->active = $inputFile['checkActive'];
+            } else {
+                $news->active = 0;
             }
-            if(isset($inputFile['txtWeight'])){
-                $news->sort= $inputFile['txtWeight'];
+            if (isset($inputFile['txtWeight'])) {
+                $news->sort = $inputFile['txtWeight'];
             }
-            if (Input::hasFile('fileImg')){
-                unlink('upload/thumbnail/'.$news->images);
-                $file= Input::file('fileImg');
-                $name= $file->getClientOriginalName();
-                $file->move('upload/thumbnail',$name);
-                $news->images=$name;
+            if (Input::hasFile('fileImg')) {
+                unlink('upload/thumbnail/' . $news->images);
+                $file = Input::file('fileImg');
+                $name = $file->getClientOriginalName();
+                $file->move('upload/thumbnail', $name);
+                $news->images = $name;
             }
             $news->save();
             //tags
-            if (Input::has('tags')==true){
-                DB::table('news_tags')->where('news_id',$id)->delete();
-                $abc= Input::get('tags');
-                foreach ($abc as $key => $getTag){
-                    $tagNew= new News_tag();
-                    $tagNew->tag_id= $getTag;
-                    $tagNew->news_id=$id;
+            if (Input::has('tags') == true) {
+                DB::table('news_tags')->where('news_id', $id)->delete();
+                $abc = Input::get('tags');
+                foreach ($abc as $key => $getTag) {
+                    $tagNew = new News_tag();
+                    $tagNew->tag_id = $getTag;
+                    $tagNew->news_id = $id;
                     $tagNew->save();
                 }
             }
-            return redirect()->route('news.index')->with(['thongbao'=>'Tin được tạo thành công']);
+            return redirect()->route('news.index')->with(['thongbao' => 'Tin được tạo thành công']);
         }
     }
 
     public function getDelete($id)
-    {   $news= News::find($id);
-        $getDelete= News::find($id)->delete();
-        DB::table('news_tags')->where('news_id',$id)->delete();
-        unlink('upload/thumbnail/'.$news->images);
-        return redirect()->route('news.index')->with(['thongbao'=>'Tin tức đã được xóa, bất ngờ chưa!!!']);
+    {
+        $news = News::find($id);
+        $getDelete = News::find($id)->delete();
+        DB::table('news_tags')->where('news_id', $id)->delete();
+        unlink('upload/thumbnail/' . $news->images);
+        return redirect()->route('news.index')->with(['thongbao' => 'Tin tức đã được xóa, bất ngờ chưa!!!']);
     }
 }

@@ -123,7 +123,7 @@
                                         <option
                                                 @if(!empty($uns['relation']))
                                                         @foreach($uns['relation'] as $un)
-                                                            @if($uns['id']==$un)
+                                                            @if($uns['id'] == $un)
                                                                 {{'selected'}}
                                                             @endif
                                                         @endforeach

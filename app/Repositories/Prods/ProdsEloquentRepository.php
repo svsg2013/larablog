@@ -83,8 +83,7 @@ class ProdsEloquentRepository extends EloquentRepository implements ProdsReposit
 
     public function getCreateAndEdit($inputFile, $id = 0)
     {
-        dd($inputFile['_token']);
-        die();
+//        $inputFile['_token'] lấy token user đã đăng nhập
         if ($id == 0) {
             $prod = new Products();
             $prod->view = 1;
@@ -157,53 +156,80 @@ class ProdsEloquentRepository extends EloquentRepository implements ProdsReposit
             }
             return redirect()->route('prods.index')->with(['thongbao' => 'Tin được tạo thành công']);
         } else {
-            $news = $this->find($id);
-            $news->view = 1;
-            $news->title = $inputFile['txtName'];
-            $news->Cate_id = $inputFile['slMenu'];
+            $prod = new Products();
+            $prod->view = 1;
+            $prod->title = $inputFile['txtName'];
+            $prod->Cate_id = $inputFile['slMenu'];
             if (!isset($inputFile['txtMetatitle'])) {
-                $news->metaTitle = $inputFile['txtName'];
+                $prod->metaTitle = $inputFile['txtName'];
             } else {
-                $news->metaTitle = $inputFile['txtMetatitle'];
+                $prod->metaTitle = $inputFile['txtMetatitle'];
             }
-            $news->alias = changeTitle($inputFile['txtName']);
-            $news->summary = $inputFile['txtSummary'];
+            $prod->alias = changeTitle($inputFile['txtName']);
+            $prod->summary = $inputFile['txtSummary'];
             if (!isset($inputFile['txtDescription'])) {
-                $news->description = $inputFile['txtSummary'];
+                $prod->description = $inputFile['txtSummary'];
             } else {
-                $news->description = $inputFile['txtDescription'];
+                $prod->description = $inputFile['txtDescription'];
             }
-            $news->content = $inputFile['txtContent'];
+            $prod->content = $inputFile['txtContent'];
             if (!isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])) {
-                $news->hot = 0;
-                $news->feature = 0;
+                $prod->hot = 0;
+                $prod->feature = 0;
             } elseif (isset($inputFile['checkHot']) && !isset($inputFile['checkFeature'])) {
-                $news->hot = $inputFile['checkHot'];
-                $news->feature = 0;
+                $prod->hot = $inputFile['checkHot'];
+                $prod->feature = 0;
             } elseif (isset($inputFile['checkHot']) && isset($inputFile['checkFeature'])) {
-                $news->hot = $inputFile['checkHot'];
-                $news->feature = $inputFile['checkFeature'];
+                $prod->hot = $inputFile['checkHot'];
+                $prod->feature = $inputFile['checkFeature'];
             } else {
-                $news->hot = 0;
-                $news->feature = $inputFile['checkFeature'];
+                $prod->hot = 0;
+                $prod->feature = $inputFile['checkFeature'];
             }
             if (isset($inputFile['checkActive'])) {
-                $news->active = $inputFile['checkActive'];
+                $prod->active = $inputFile['checkActive'];
             } else {
-                $news->active = 0;
+                $prod->active = 0;
             }
             if (isset($inputFile['txtWeight'])) {
-                $news->sort = $inputFile['txtWeight'];
+                $prod->sort = $inputFile['txtWeight'];
+            }
+            if (isset($inputFile['txtPrices'])){
+                $prod->prices = $inputFile['txtPrices'];
+            }else{
+                $prod->prices = 0;
+            }
+            if (isset($inputFile['txtDiscount'])){
+                $prod->discount = $inputFile['txtDiscount'];
+            }else{
+                $prod->discount = 0;
             }
             if (Input::hasFile('fileImg')) {
-                unlink('upload/thumbnail/' . $news->images);
                 $file = Input::file('fileImg');
                 $name = $file->getClientOriginalName();
                 $file->move('upload/thumbnail', $name);
-                $news->images = $name;
+                $prod->images = $name;
             }
-//            $news->save();
-            return redirect()->route('news.index')->with(['thongbao' => 'Tin được tạo thành công']);
+//            $prod->save();
+            $idProds = $prod->id;
+            $files = Input::file('prodImages');
+            dd($files);
+            die();
+            if (Input::hasFile('prodImages') == true) {
+                ImagesProd::where('Prod_id',$idProds)->delete();
+                $files = Input::file('prodImages');
+                foreach ($files as $file) {
+                    if (isset($file)){
+                        $inputImg = new ImagesProd();
+                        $getNameImg = $file->getClientOriginalName();
+                        $file->move('upload/imgProds', $getNameImg);
+                        $inputImg->images = $getNameImg;
+//                        $inputImg->Prod_id = $idProds;
+//                        $inputImg->save();
+                    }
+                }
+            }
+            return redirect()->route('prods.index')->with(['thongbao' => 'Sản phẩm cập nhật thành công']);
         }
     }
 
@@ -214,5 +240,10 @@ class ProdsEloquentRepository extends EloquentRepository implements ProdsReposit
         DB::table('news_tags')->where('news_id', $id)->delete();
         unlink('upload/thumbnail/' . $prods->images);
         return redirect()->route('news.index')->with(['thongbao' => 'Tin tức đã được xóa, bất ngờ chưa!!!']);
+    }
+
+    public function imgsEdit($id){
+        $getImgs = ImagesProd::select('id','Prod_id','images')->where('Prod_id',$id)->get()->toArray();
+        return $getImgs;
     }
 }

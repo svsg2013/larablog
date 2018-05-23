@@ -272,3 +272,26 @@ input[type=checkbox] {
 .boxImgs button.but:hover{
   background-color: red;
 }
+/* custom thumbnail images product */
+.thumbnail {
+  width: 170px;
+  height: 112px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: 50% top;
+}
+
+/* custom button close */
+.customButton{
+  position: relative;
+  top: -131px;
+}
+.formCustom{
+  position: relative;
+  top: -57px;
+}
+.customText{
+  height: 159px;
+  margin-top: 10px;
+}

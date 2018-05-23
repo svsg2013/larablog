@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Prods\ProdsRepositoryInterface;
@@ -69,7 +70,10 @@ class ProdsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getMenu = $this->_prods->getDataMenu();
+        $getProd = $this->_prods->find($id);
+        $getImgs = $this->_prods->imgsEdit($id);
+        return view('admin.prods.edit')->with(['getPosts' => $getProd,'getDataMenu' => $getMenu,'getImages' => $getImgs]);
     }
 
     /**
@@ -81,7 +85,8 @@ class ProdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $getProd = $this->_prods->getCreateAndEdit($request->all(),$id);
+        return $getProd;
     }
 
     /**

@@ -18,4 +18,5 @@ Interface ProdsRepositoryInterface
     public function getDelete($id);
     public function find($id);
     public function unseri($id);
+    public function imgsEdit($id);
 }

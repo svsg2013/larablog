@@ -16,3 +16,7 @@ $("#imageBlock").on("click", ".removeQuatationBtn", function (e) {
     $(this).parents("#imageField").remove();
     no--;
 });
+
+$('.customText').on('click','.removeQuatationBtn',function (e) {
+   $(this).parents('.customText').remove();
+});

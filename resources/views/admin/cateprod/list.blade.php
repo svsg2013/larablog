@@ -62,22 +62,22 @@
 @section('jstable')
 
     <!--js table-->
-    <script src="{{asset('public/backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.bootstrap.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/jszip.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/pdfmake.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/vfs_fonts.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/buttons.print.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.scroller.min.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.colVis.js')}}"></script>
-    <script src="{{asset('public/backend/plugins/datatables/dataTables.fixedColumns.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/buttons.bootstrap.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/jszip.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/pdfmake.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/vfs_fonts.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/buttons.print.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.fixedHeader.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.keyTable.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.scroller.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.colVis.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.fixedColumns.min.js')}}"></script>
 
     <!-- init -->
     <script src="{{asset('public/backend/pages/jquery.datatables.init.js')}}"></script>
