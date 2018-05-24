@@ -156,7 +156,7 @@ class ProdsEloquentRepository extends EloquentRepository implements ProdsReposit
             }
             return redirect()->route('prods.index')->with(['thongbao' => 'Tin được tạo thành công']);
         } else {
-            $prod = new Products();
+            $prod = $this->find($id);
             $prod->view = 1;
             $prod->title = $inputFile['txtName'];
             $prod->Cate_id = $inputFile['slMenu'];
@@ -204,19 +204,36 @@ class ProdsEloquentRepository extends EloquentRepository implements ProdsReposit
             }else{
                 $prod->discount = 0;
             }
-            if (Input::hasFile('fileImg')) {
+            if (Input::hasFile('fileImg') == true) {
+                $getData = $this->find($id);
+                unlink('upload/thumbnail/'.$getData->images);
                 $file = Input::file('fileImg');
-                $name = $file->getClientOriginalName();
-                $file->move('upload/thumbnail', $name);
-                $prod->images = $name;
+                $fileName = $file->getClientOriginalName();
+                $file->move('upload/thumbnail', $fileName);
+                $prod->images = $fileName;
             }
-//            $prod->save();
+            $prod->save();
             $idProds = $prod->id;
-            $files = Input::file('prodImages');
-            dd($files);
-            die();
+            //delete one and any images
+            if(isset($inputFile['deleteImg'])){
+                foreach ($inputFile['deleteImg'] as $id => $file){
+                    $getData = ImagesProd::find($id);
+                    unlink('upload/imgProds/'.$getData->images);
+                    ImagesProd::find($id)->delete();
+                }
+            }
+            //edit Images
+            if (Input::hasFile('editImages') == true){
+                foreach ($inputFile['editImages'] as $id => $file){
+                    $getPut = ImagesProd::find($id);
+                    unlink('upload/imgProds/'.$getPut->images);
+                    $fileName = $file->getClientOriginalName();
+                    $file->move('upload/imgProds/',$fileName);
+                    $getPut->images = $fileName;
+                    $getPut->save();
+                }
+            }
             if (Input::hasFile('prodImages') == true) {
-                ImagesProd::where('Prod_id',$idProds)->delete();
                 $files = Input::file('prodImages');
                 foreach ($files as $file) {
                     if (isset($file)){
@@ -224,8 +241,8 @@ class ProdsEloquentRepository extends EloquentRepository implements ProdsReposit
                         $getNameImg = $file->getClientOriginalName();
                         $file->move('upload/imgProds', $getNameImg);
                         $inputImg->images = $getNameImg;
-//                        $inputImg->Prod_id = $idProds;
-//                        $inputImg->save();
+                        $inputImg->Prod_id = $idProds;
+                        $inputImg->save();
                     }
                 }
             }

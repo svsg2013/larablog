@@ -12,11 +12,14 @@ $("#addMoreImage").click(function(){
     );
 });
 $("#imageBlock").on("click", ".removeQuatationBtn", function (e) {
-    //alert('ok');
     $(this).parents("#imageField").remove();
-    no--;
 });
 
 $('.customText').on('click','.removeQuatationBtn',function (e) {
+    var getData= $(this).attr('data-value');
+    $('div.deleteImg').append(
+        '<input type="hidden" name="deleteImg['+getData+']" />'
+    );
+    console.log(getData);
    $(this).parents('.customText').remove();
 });

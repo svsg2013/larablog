@@ -132,9 +132,10 @@
                                         <div class="thumbnail" style="background-image: url({{asset('upload/imgProds/'.$img['images'])}});">
                                             <img src="{{asset('upload/imgProds/'.$img['images'])}}" alt="">
                                         </div>
-                                        <button type="button" class="removeQuatationBtn btn btn-custom customButton"><i class="fa fa-close"></i></button>
-                                        {!! Form::file('prodImages['.$img['id'].']',['class'=>'form-control formCustom']) !!}
+                                        <button type="button" class="removeQuatationBtn btn btn-custom customButton" data-value="{{$img['id']}}"><i class="fa fa-close"></i></button>
+                                        {!! Form::file('editImages['.$img['id'].']',['class'=>'form-control formCustom']) !!}
                                     </div>
+                                    <div class="deleteImg"></div>
                                 @endif
                             @endforeach
                             <div class="col-md-12">
